@@ -1,0 +1,8 @@
+# Vendored third-party libraries (present on the server, referenced only by
+# commented-out code — not tracked here).
+getid3/
+elusive-icons-2.0.0/
+
+# Server-side backup copies.
+*.bak
+*.bak-*
