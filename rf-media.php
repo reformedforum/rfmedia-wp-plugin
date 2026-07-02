@@ -126,7 +126,7 @@ function rfmedia_player_styles() {
 		. '.rfmp{margin:0 0 1.75rem;}'
 		. '.rfmp-video{position:relative;width:100%;padding-top:56.25%;background:#000;border-radius:10px;overflow:hidden;margin:0 0 1.25rem;}'
 		. '.rfmp-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}'
-		. '.rfmp-audio{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem 1rem;margin:0 0 1.25rem;padding:1rem 1.15rem;background:#faf8f3;border:1px solid rgba(28,28,27,.12);border-radius:10px;}'
+		. '.rfmp-audio{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem 1rem;margin:0 0 1.25rem;padding:1rem 1.15rem;background:#f7f7f7;border:1px solid rgba(28,28,27,.12);border-radius:10px;}'
 		. '.rfmp-audio__label{font:600 .72rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;text-transform:uppercase;letter-spacing:.16em;color:#595448;}'
 		. '.rfmp-audio__player{flex:1 1 300px;min-width:0;height:40px;}'
 		. '.rfmp-audio__dl{font:500 .82rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#a8353a;text-decoration:none;white-space:nowrap;}'
