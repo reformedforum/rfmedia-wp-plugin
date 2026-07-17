@@ -164,11 +164,14 @@ function rfmedia_add_player($content) {
 		}
 	}
 
-	// Don't double up if the post body already embeds the video.
-	$has_video_in_content = ( stripos($content, 'youtube.com') !== false
-		|| stripos($content, 'youtu.be') !== false
-		|| stripos($content, 'youtube-nocookie.com') !== false
-		|| stripos($content, 'player.vimeo.com') !== false );
+	// Don't double up if the post body already EMBEDS a video (an actual iframe).
+	// A mere link to YouTube in the show notes must NOT count. This filter runs at
+	// priority 10, after core's autoembed (priority 8), so bare URLs on their own
+	// line have already been converted to iframes by the time we look.
+	$has_video_in_content = (bool) preg_match(
+		'~<iframe[^>]+src=["\']?[^"\'>]*(?:youtube\.com/embed|youtube-nocookie\.com/embed|youtu\.be/|player\.vimeo\.com)~i',
+		$content
+	);
 
 	$html = '';
 
