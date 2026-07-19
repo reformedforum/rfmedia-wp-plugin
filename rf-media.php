@@ -195,6 +195,31 @@ function rfmedia_add_player($content) {
 }
 add_action('the_content', 'rfmedia_add_player');
 
+/**
+ * Expose Reformed Forum podcast meta to the REST API (read-only).
+ *
+ * The reformed.forum front end reads `rf_podcast_audio_url` and `rf_youtube_url`
+ * from /wp-json/wp/v2/podcast. WordPress only includes post meta in REST
+ * responses when it is registered with `show_in_rest`, so without this
+ * registration those fields stay hidden and the front end falls back to the
+ * Captivate feed for audio (and shows no YouTube link).
+ *
+ * `auth_callback` returning false keeps the fields read-only over REST; the
+ * writing workflow in wp-admin (see meta_box.php) is unchanged.
+ */
+add_action('init', function () {
+	// Canonical keys (confirmed): rf_podcast_audio_url for the audio
+	// enclosure, rf_youtube_url for the associated YouTube video.
+	foreach (array('rf_podcast_audio_url', 'rf_youtube_url') as $key) {
+		register_post_meta('podcast', $key, array(
+			'type'          => 'string',
+			'single'        => true,
+			'show_in_rest'  => true,
+			'auth_callback' => '__return_false',
+		));
+	}
+});
+
 function rfmedia_check_type($type) {
 	if ( in_array( $type, array('audio', 'video-large', 'video-medium', 'video-small') ) ) {
 		return true;
